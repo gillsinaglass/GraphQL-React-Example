@@ -19,7 +19,7 @@ const schema = makeExecutableSchema({
 });
 
 // Connects to Database
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {autoIndex: false})
     .then(()=> console.log('DB Connected'))
     .catch(err=> console.error(err));
 
@@ -31,7 +31,9 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}
 ))
 
 // Connect Schemas with GraphQL
-app.use('/graphql', bodyParser.json(), graphqlExpress({
+app.use('/graphql', 
+bodyParser.json(), 
+graphqlExpress({
     schema,
     context: {
         Recipe,
