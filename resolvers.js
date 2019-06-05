@@ -24,7 +24,7 @@ exports.resolvers = {
                 username
             }).save();
             return newRecipe
-        }
+        },
 
         signupUser: async (root, { username, email, password}, { User }) => {
             const user = await User.findOne({username});
