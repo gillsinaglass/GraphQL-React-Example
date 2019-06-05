@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+const cors = require('cors')
 require('dotenv').config({path: 'variables.env'});
 const Recipe = require("./Models/Recipe");
 const User = require("./Models/User");
@@ -25,6 +26,14 @@ mongoose.connect(process.env.MONGO_URI, {autoIndex: false})
 
 // Initializes Application
 const app = express();
+
+const corsOptions = {
+    // string of url that we are making requests from
+    origin: 'http://localhost:3000',
+    // needed for apollo-client to work correctly. 
+    credentials: true
+}
+app.use(cors(corsOptions))
 
 // Creates Graphiql application
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}
