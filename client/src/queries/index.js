@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
-
-export const GET_ALL_RECIPES = gql
+// eslint-disable-next-line
+export const GET_ALL_RECIPES = gql 
 `
 query {
     getAllRecipes{
@@ -11,5 +11,4 @@ query {
         likes
         createdDate
     }
-}
-`
+}`
