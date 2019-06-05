@@ -1,5 +1,7 @@
 import { gql } from 'apollo-boost'
 // eslint-disable-next-line
+
+// Recipes Queries
 export const GET_ALL_RECIPES = gql 
 `
 query {
@@ -11,4 +13,18 @@ query {
         likes
         createdDate
     }
-}`
+}`;
+
+// Recipes Mutations
+
+// User Queries
+
+// User Mutations
+
+export const SIGNUP_USER = gql
+`
+mutation($username:String!, $email: String!, $password:String!) {
+    signupUser(username:$username, email:$email, password:$password){
+      token
+    }
+  }`;
