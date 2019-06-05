@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import './index.css';
@@ -10,6 +10,7 @@ import withSession from './components/withSession';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import NavBar from './components/NavBar';
 
 //Essential for connecting frontend and Backend
 const client = new ApolloClient({
@@ -36,12 +37,15 @@ const client = new ApolloClient({
 
 const Root =({refetch}) => (
     <Router>
-        <Switch>
-            <Route path="/" exact component={App} />
-            <Route path="/signin" render={()=> <Signin refetch={refetch} />} />
-            <Route path="/signup" render={()=> <Signup refetch={refetch} />} />
-            <Redirect to="/"/>
-        </Switch>
+        <Fragment>
+            <NavBar/>
+            <Switch>
+                <Route path="/" exact component={App} />
+                <Route path="/signin" render={()=> <Signin refetch={refetch} />} />
+                <Route path="/signup" render={()=> <Signup refetch={refetch} />} />
+                <Redirect to="/"/>
+             </Switch>
+        </Fragment>
     </Router>
 );
 
