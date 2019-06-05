@@ -12,8 +12,26 @@ import { ApolloProvider } from 'react-apollo';
 
 //Essential for connecting frontend and Backend
 const client = new ApolloClient({
-    uri: 'http://localhost:4444/graphql'
-});
+    uri: 'http://localhost:4444/graphql',
+    // Allows sending token to backend
+    fetchOptions: {
+        credentials: 'include'
+    },
+    request: operation => {
+        const token = localStorage.getItem('token')
+        operation.setContext({
+            headers: {
+                authorization: token
+            }
+        })
+    },
+    onError: ({ networkError}) => {
+        if (networkError) {
+            console.log('Network Error', networkError);
+            }
+        }
+    }
+);
 
 const Root =() => (
     <Router>
