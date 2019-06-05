@@ -7,6 +7,7 @@ import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 import withSession from './components/withSession';
+import Search from './components/Recipe/Search'
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -41,6 +42,7 @@ const Root =({refetch}) => (
             <NavBar/>
             <Switch>
                 <Route path="/" exact component={App} />
+                <Route path="/search" exact component={Search} />
                 <Route path="/signin" render={()=> <Signin refetch={refetch} />} />
                 <Route path="/signup" render={()=> <Signup refetch={refetch} />} />
                 <Redirect to="/"/>
