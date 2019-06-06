@@ -13,6 +13,21 @@ query {
     }
 }`;
 
+export const GET_RECIPE = gql 
+`
+query($_id:ID!) {
+  getRecipe(_id:$_id) {
+    name
+    _id
+    category
+    description
+    instructions
+    createdDate
+    likes
+  }
+}
+`
+
 // Recipes Mutations
 
 // User Queries
