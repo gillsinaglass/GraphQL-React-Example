@@ -9,7 +9,6 @@ query {
         _id
         name
         category
-
     }
 }`;
 
@@ -24,11 +23,27 @@ query($_id:ID!) {
     instructions
     createdDate
     likes
+    username
   }
 }
 `
 
 // Recipes Mutations
+export const ADD_RECIPE = gql
+`
+mutation($name: String!, $description: String!, $category: String!, $instructions: String!, $username: String) {
+  addRecipe(name: $name, description: $description, category: $category, instructions: $instructions, username: $username) {
+    name
+    _id
+    category
+    description
+    instructions
+    createdDate
+    likes
+    username
+  }
+}
+`
 
 // User Queries
 export const GET_CURRENT_USER = gql
