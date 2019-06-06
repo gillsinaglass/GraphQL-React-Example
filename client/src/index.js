@@ -14,6 +14,7 @@ import { ApolloProvider } from 'react-apollo';
 import NavBar from './components/NavBar';
 import AddRecipe from './components/Recipe/AddRecipe';
 import Profile from './components/Profile/Profile'
+import RecipePage from './components/Recipe/RecipePage'
 
 //Essential for connecting frontend and Backend
 const client = new ApolloClient({
@@ -44,11 +45,12 @@ const Root =({refetch, session}) => (
             <NavBar session={session}/>
             <Switch>
                 <Route path="/" exact component={App} />
-                <Route path="/search" exact component={Search} />
+                <Route path="/search" component={Search} />
                 <Route path="/signin" render={()=> <Signin refetch={refetch} />} />
                 <Route path="/signup" render={()=> <Signup refetch={refetch} />} />
-                <Route path="/recipe/add" exact component={AddRecipe} />
-                <Route path="/profile" exact component={Profile} />
+                <Route path="/recipe/add" component={AddRecipe} />
+                <Route path="/recipes/:_id" component={RecipePage} />
+                <Route path="/profile" component={Profile} />
                 <Redirect to="/"/>
              </Switch>
         </Fragment>
