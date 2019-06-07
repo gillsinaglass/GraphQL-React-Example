@@ -22,6 +22,7 @@ const UserRecipes = ({ username }) => (
             return (
             <ul className="App">
                 <h3>Your Recipes</h3>
+                {!data.getUserRecipes.length && <p><strong>You haven't added any Recipes yet!</strong></p>}
                 {data.getUserRecipes.map(recipe => (
                     <li key={recipe._id}>
                         <Link to={  `/recipes/${recipe._id}` }>
