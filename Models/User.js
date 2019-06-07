@@ -45,5 +45,7 @@ UserSchema.pre('save', function(next) {
     })
 })
 
+UserSchema.index({'$**': 'text'});
+
 module.exports = mongoose.model('User', UserSchema)
 

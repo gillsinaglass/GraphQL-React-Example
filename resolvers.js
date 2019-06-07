@@ -41,7 +41,7 @@ exports.resolvers = {
                 }).sort({
                     score: { $meta: "textScore"}
                 });
-                return searchResults
+                return searchResults;
             } else {
                 const recipes = await Recipe.find().sort({ likes: 'desc', createdDate: 'desc'})
                 return recipes

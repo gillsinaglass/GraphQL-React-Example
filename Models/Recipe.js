@@ -32,8 +32,7 @@ const RecipeSchema = new Schema({
     },
 });
 
-RecipeSchema.index({
-    "$**": "text"
-});
+RecipeSchema.index({name: 'text', category: 'text', description: 'text'});
+
 
 module.exports = mongoose.model('Recipe', RecipeSchema)

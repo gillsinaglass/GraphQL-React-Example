@@ -16,11 +16,11 @@ class Search extends React.Component{
         <input 
           type="search" 
           placeholder="Search For Recipes" 
-          onChange={ async event => { 
+          onChange={async event => { 
             event.persist()
             const data = await client.query({
                 query: SEARCH_RECIPES,
-                variables: { searchTerm: event.target.value }
+                variables: {searchTerm: event.target.value }
             });
             this.handleChange(data)
         }}
