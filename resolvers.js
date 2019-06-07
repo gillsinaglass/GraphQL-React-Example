@@ -16,6 +16,13 @@ exports.resolvers = {
             return allRecipes
         },
 
+        getUserRecipes: async (root, {username}, {Recipe}) => {
+            const userRecipes = await Recipe.find({ username}).sort({
+                createdDate: 'desc'
+            })
+            return userRecipes
+        },
+
         getCurrentUser: async (root, args, { currentUser, User}) => {
             if (!currentUser) {
                 return null;
@@ -59,6 +66,11 @@ exports.resolvers = {
                 username
             }).save();
             return newRecipe
+        },
+
+        deleteUserRecipe: async (root, { _id}, { Recipe }) => {
+            const recipe = await Recipe.findOneAndRemove({_id});
+            return recipe
         },
 
         signinUser: async (root, {username, password}, {User})=> {
