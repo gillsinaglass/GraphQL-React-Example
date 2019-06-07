@@ -29,6 +29,7 @@ type Query {
 
     getCurrentUser: User
     searchRecipes(searchTerm: String): [Recipe]
+    getUserRecipes(username: String!): [Recipe]
 }
 
 type Mutation {
