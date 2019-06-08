@@ -1,5 +1,5 @@
 import React from 'react';
-import UserInfo from "./UserInfo"
+import UserInfo from "./UserInfo."
 import UserRecipes from "./UserRecipes"
 import withAuth from '../withAuth'
 
