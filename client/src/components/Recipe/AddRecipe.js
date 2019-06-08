@@ -1,5 +1,6 @@
 import React from 'react' 
 import { withRouter } from 'react-router-dom'
+import CKEditor from 'react-ckeditor-component'
 
 import { Mutation } from 'react-apollo'
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../../queries'
@@ -35,6 +36,11 @@ class AddRecipe extends React.Component{
             [name]: value
         })
         
+    }
+
+    handleEditorChange = event => {
+        const newContent = event.editor.getData()
+        this.setState({ instructions: newContent});
     }
 
     handleSubmit = (event, addRecipe) => {
@@ -86,7 +92,13 @@ class AddRecipe extends React.Component{
                             <option value="Snack">Snack</option>
                         </select>
                         <input type="text" name="description" placeholder="Add description..." onChange={this.handleChange} value={description}/>
-                        <textarea name="instructions" placeholder="Add instructions..." onChange={this.handleChange} value={instructions}/>
+                        <label htmlFor="instructions">Add Instructions</label>
+                        <CKEditor name="instructions"
+                        content={instructions}
+                        events={{ change: this.handleEditorChange}}
+                        />
+
+
                         <button disabled={loading || this.validateForm()} type="submit" className="button-primary">Submit</button>
                         {error && <Error error={error} />}
                     </form>

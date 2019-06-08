@@ -12,7 +12,6 @@ const RecipeItem = ({ _id, imageUrl, name, category }) => (
         <Link to={`/recipes/${_id}`}>
             <h4>{name}</h4>
         </Link>
-            <strong>{category}</strong>
         </div>
     </li>
 );
