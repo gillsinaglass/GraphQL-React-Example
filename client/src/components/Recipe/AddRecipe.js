@@ -23,7 +23,6 @@ class AddRecipe extends React.Component{
     }
 
     componentDidMount() {
-        console.log(this.props.session.getCurrentUser.username)
         this.setState({
             username: this.props.session.getCurrentUser.username
         })
@@ -40,7 +39,6 @@ class AddRecipe extends React.Component{
     handleSubmit = (event, addRecipe) => {
         event.preventDefault()
         addRecipe().then(({ data }) => {
-            console.log(data)
             this.clearState();
             this.props.history.push("/")
         })
@@ -54,8 +52,6 @@ class AddRecipe extends React.Component{
 
     updateCache = (cache, {data: { addRecipe }}) => {
         const { getAllRecipes} = cache.readQuery( { query: GET_ALL_RECIPES })
-        console.log('from cache', getAllRecipes)
-        console.log('from data', addRecipe)
 
         cache.writeQuery({
             query: GET_ALL_RECIPES,

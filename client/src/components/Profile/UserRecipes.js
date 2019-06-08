@@ -8,7 +8,6 @@ const handleDelete = deleteUserRecipe => {
     const confirmDelete = window.confirm('Are you sure you want to delete this recipe?')
     if (confirmDelete) {
         deleteUserRecipe().then(({ data }) => {
-            console.log(data)
         })
     }
 }
@@ -17,8 +16,7 @@ const UserRecipes = ({ username }) => (
     <Query query={GET_USER_RECIPES} variables={{ username }}> 
         {({ data, loading, error }) => {
             if (loading) return <div>Loading</div>
-            if (error) return <div>Error</div>
-            console.log(data);
+            if (error) return <div>Error</div>;
             return (
             <ul className="App">
                 <h3>Your Recipes</h3>
@@ -32,9 +30,7 @@ const UserRecipes = ({ username }) => (
                         <Mutation 
                         mutation={DELETE_USER_RECIPE} 
                         refetchQueries={() => [
-                            { query: GET_ALL_RECIPES,
-                              query: GET_CURRENT_USER
-                            }
+                            { query: GET_ALL_RECIPES, GET_CURRENT_USER}
                         ]}
                         variables={{_id: recipe._id}}
                         update={(cache, {data: {deleteUserRecipe}}) => {
@@ -57,7 +53,6 @@ const UserRecipes = ({ username }) => (
                                     onClick={() => handleDelete(deleteUserRecipe)}>{attrs.loading? 'deleting...' : 'X'}</p>
                                 )
                             }}
-
                         </Mutation>
                     </li>
                 ))}

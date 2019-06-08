@@ -6,7 +6,6 @@ import LikeRecipe from './LikeRecipe'
 
 const RecipePage = ({ match }) => {
     const { _id} = match.params
-    console.log(_id);
     
     return (
         <Query query={GET_RECIPE} variables ={{_id}}>

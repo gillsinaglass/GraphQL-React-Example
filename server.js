@@ -22,8 +22,8 @@ const schema = makeExecutableSchema({
 
 // Connects to Database
 mongoose.connect(process.env.MONGO_URI, {autoIndex: false})
-    .then(()=> console.log('DB Connected'))
-    .catch(err=> console.error(err));
+    // .then(()=> console.log('DB Connected'))
+    // .catch(err=> console.error(err));
 
 // Initializes Application
 const app = express();
@@ -47,7 +47,7 @@ app.use(async (req, res, next) => {
             console.error(err)
         }
     }
-    console.log(token)
+    // console.log(token)
     next();
 });
 
@@ -72,5 +72,5 @@ graphqlExpress(({ currentUser }) => ({
 const PORT = process.env.PORT || 4444
 
 app.listen(PORT, () => {
-    console.log(`Server Listening on PORT${PORT}`);
+    // console.log(`Server Listening on PORT${PORT}`);
 })

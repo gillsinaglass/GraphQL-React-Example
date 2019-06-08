@@ -6,7 +6,7 @@ import {SEARCH_RECIPES} from '../../queries'
 
 class Search extends React.Component{
     handleChange = data => {
-        console.log(data)
+
     }
     render() {
         return (

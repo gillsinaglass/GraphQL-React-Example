@@ -15,7 +15,6 @@ class LikeRecipe extends React.Component {
             const { username, favorites } = this.props.session.getCurrentUser;
             const { _id } = this.props
             const prevLiked = favorites.findIndex(favorite => favorite._id === _id ) >-1
-            console.log(favorites);
             this.setState({ 
                 liked: prevLiked, 
                 username 
@@ -35,12 +34,11 @@ class LikeRecipe extends React.Component {
     handleLike = (likeRecipe, unlikeRecipe) => {
         if (this.state.liked){
             likeRecipe().then(async ({ data }) => {
-             console.log(data)
              await this.props.refetch()
             })
         } else {
             unlikeRecipe().then(async ({ data }) => {
-                console.log(data)
+
                 await this.props.refetch()
         })
     }
