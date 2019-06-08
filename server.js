@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config({path: 'variables.env'});
 const Recipe = require("./Models/Recipe");
 const User = require("./Models/User");
+const path = require('path')
 
 // Bring in GraphQL Middleware
 const { graphiqlExpress, graphqlExpress} = require('apollo-server-express')
@@ -52,8 +53,8 @@ app.use(async (req, res, next) => {
 });
 
 // Creates Graphiql application
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}
-))
+// app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}
+// ))
 
 // Connect Schemas with GraphQL
 app.use('/graphql', 
@@ -67,7 +68,15 @@ graphqlExpress(({ currentUser }) => ({
         currentUser
     }
 }))
-)
+);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+}
 
 const PORT = process.env.PORT || 4444
 
