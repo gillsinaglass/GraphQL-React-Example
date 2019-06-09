@@ -30,12 +30,12 @@ mongoose.connect(process.env.MONGO_URI, {autoIndex: false})
 const app = express();
 
 const corsOptions = {
-    // string of url that we are making requests from
-    origin: 'http://localhost:3000',
-    // needed for apollo-client to work correctly. 
-    credentials: true
+    // // string of url that we are making requests from
+    // origin: 'http://localhost:3000',
+    // // needed for apollo-client to work correctly. 
+    // credentials: true
 }
-app.use(cors(corsOptions))
+app.use(cors('*'))
 
 // Set up JWT authentication middleWare
 app.use(async (req, res, next) => {
