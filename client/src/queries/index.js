@@ -80,6 +80,31 @@ mutation($_id: ID!) {
 }
 `
 
+export const UPDATE_USER_RECIPE = gql`
+  mutation(
+    $_id: ID!
+    $name: String!
+    $imageUrl: String!
+    $description: String!
+    $category: String!
+  ) {
+    updateUserRecipe(
+      _id: $_id
+      name: $name
+      imageUrl: $imageUrl
+      description: $description
+      category: $category
+    ) {
+      _id
+      name
+      likes
+      category
+      imageUrl
+      description
+    }
+  }
+`;
+
 
 // User Queries
 export const GET_CURRENT_USER = gql`
@@ -102,6 +127,9 @@ query($username: String!) {
     _id
     name
     likes
+    imageUrl
+    category
+    description
   }
 }
 `

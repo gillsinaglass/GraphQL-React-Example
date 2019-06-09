@@ -84,6 +84,14 @@ exports.resolvers = {
             const user = await User.findOneAndUpdate({ username }, { $pull: { favorites: _id}});
             return recipe
         },
+        updateUserRecipe: async (root,{ _id, name, imageUrl, category, description },{ Recipe }) => {
+            const updatedRecipe = await Recipe.findOneAndUpdate(
+              { _id },
+              { $set: { name, imageUrl, category, description } },
+              { new: true }
+            );
+            return updatedRecipe;
+          },
 
         signinUser: async (root, {username, password}, {User})=> {
             const user = await User.findOne({username})
