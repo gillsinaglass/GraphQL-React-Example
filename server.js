@@ -22,7 +22,7 @@ const schema = makeExecutableSchema({
 });
 
 // Connects to Database
-mongoose.connect(process.env.MONGO_URI, {autoIndex: false})
+mongoose.connect(process.env.MONGO_URI)
     // .then(()=> console.log('DB Connected'))
     // .catch(err=> console.error(err));
 

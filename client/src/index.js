@@ -18,7 +18,7 @@ import RecipePage from './components/Recipe/RecipePage'
 
 //Essential for connecting frontend and Backend
 const client = new ApolloClient({
-    uri: 'https://react-graphql-example.herokuapp.com/graphql',
+    uri: 'http://localhost:4444/graphql',
     // Allows sending token to backend
     fetchOptions: {
         credentials: 'include'
