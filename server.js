@@ -35,7 +35,7 @@ const corsOptions = {
     // // needed for apollo-client to work correctly. 
     // credentials: true
 }
-app.use(cors('*'))
+app.use(cors('*')) // Allows for mobile connection to server
 
 // Set up JWT authentication middleWare
 app.use(async (req, res, next) => {

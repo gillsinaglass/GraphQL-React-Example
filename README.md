@@ -1,5 +1,7 @@
 # GraphQL-React-Example
 
+## Hosted @ https://react-graphql-example.herokuapp.com/
+
 ## Description
 
 ### Recipe application built with React and GraphQL! 

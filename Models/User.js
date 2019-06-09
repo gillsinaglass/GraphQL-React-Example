@@ -27,13 +27,10 @@ const UserSchema = new Schema({
     }
 });
 
-// before any user is saved to db
 UserSchema.pre('save', function(next) {
     if (!this.isModified('password')) {
-        // call next function because we are not signing up user
         return next();
     }
-    // function to hash user password
     bcrypt.genSalt(10, (err, salt) => {
         if (err) return next(err);
         // 
