@@ -4,15 +4,17 @@ import { Query, Mutation } from 'react-apollo'
 import { GET_USER_RECIPES, DELETE_USER_RECIPE, GET_ALL_RECIPES, GET_CURRENT_USER } from '../../queries'
 import { Link } from 'react-router-dom'
 
-const handleDelete = deleteUserRecipe => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this recipe?')
-    if (confirmDelete) {
-        deleteUserRecipe().then(({ data }) => {
-        })
+class UserRecipes extends React.Component {
+    handleDelete = deleteUserRecipe => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this recipe?')
+        if (confirmDelete) {
+            deleteUserRecipe().then(({ data }) => {
+            })
+        }
     }
-}
-
-const UserRecipes = ({ username }) => (
+    render() {
+        const { username } = this.props
+    return (
     <Query query={GET_USER_RECIPES} variables={{ username }}> 
         {({ data, loading, error }) => {
             if (loading) return <div>Loading</div>
@@ -48,10 +50,13 @@ const UserRecipes = ({ username }) => (
                             }}>
                             {(deleteUserRecipe, attrs ={}) => {
                                 return (
+                                    <div>
+                                    <button className="button-primary">Update</button>
                                     <p 
                                     className="delete-button"
-                                    onClick={() => handleDelete(deleteUserRecipe)}>{attrs.loading? 'deleting...' : 'X'}</p>
-                                )
+                                    onClick={() => this.handleDelete(deleteUserRecipe)}>{attrs.loading? 'deleting...' : 'X'}</p>
+                                    </div>
+                                    )
                             }}
                         </Mutation>
                     </li>
@@ -61,6 +66,6 @@ const UserRecipes = ({ username }) => (
         }}
 
     </Query>
-)
+)}}
 
 export default UserRecipes
