@@ -14,6 +14,7 @@ class Search extends React.Component{
      {client => (
         <div className="App">
         <input 
+          className="search"
           type="search" 
           placeholder="Search For Recipes" 
           onChange={async event => { 
